@@ -1,0 +1,38 @@
+body{
+
+    background-color: #CC0000;
+
+    margin: 30px;
+    
+}
+
+#main{
+
+    background: white;
+}
+p{
+    font-size: 32px;
+}
+
+div{
+
+    border: 5px solid black;
+}
+
+
+.title_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    height: 50px;
+}
+
+.pokedex_title {
+    font-family: 'Courier New', Courier, monospace;
+    font: 700;
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0;
+    color: white;
+}
