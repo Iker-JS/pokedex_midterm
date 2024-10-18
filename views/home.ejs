@@ -1,16 +1,21 @@
 <%- include("partials/header"); -%>
-
-
-
-<% if(locals.name) { %>
-
-    <p>hi <%= name %></p>
-
-
-<% } %>
-
+<div>
     
-</main>
+    <main id="page_main">
+        
+        
+        
+        <h1>Pokemon Search</h1>
+        <form id="pokemon-search-form" method="POST" action="/search">
+            <input id="pokemon-name" name="name" type="text" placeholder="Pokemon name" required>
+            <button type="submit">Search</button>
+        </form>
+        
+        
+        
+        <% if (locals.pokemonData) { %>
+            <%- include("partials/pokemon_form"); -%>            
 
-</div>
+        <% } %>
+
 <%- include("partials/footer"); -%>

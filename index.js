@@ -1,58 +1,49 @@
 require("dotenv").config();
-
 const express = require('express');
 const app = express();
 const https = require('https');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('public')); // Para servir archivos estáticos
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-// Home route
+// Ruta principal
 app.route("/")
     .get((req, res) => {
-        // Render the home page with an empty joke initially
-        res.render("home", { joke: "" });
+        res.render("home", { pokemonData: null }); // Renderizar la página de inicio
     });
 
-// New route for searching Pokémon
+// Ruta para buscar Pokémon
 app.post('/search', (req, res) => {
-    const pokemonName = req.body.name; // Get the Pokémon name from the request body
+    const pokemonName = req.body.name; // Obtener el nombre del Pokémon del formulario
 
-    // Call the PokeAPI to search for the Pokémon
+    // Llamar a la PokeAPI para buscar el Pokémon
     https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (apiRes) => {
         let data = '';
-
-        // A chunk of data has been received
+        
+        // Recibir los datos
         apiRes.on('data', (chunk) => {
             data += chunk;
         });
-
-        // The whole response has been received
+        // Cuando se reciben todos los datos
         apiRes.on('end', () => {
             if (apiRes.statusCode === 200) {
                 const pokemonData = JSON.parse(data);
-                // Send the Pokémon data back to the frontend, including the ID
-                res.json({
-                    id: pokemonData.id,
-                    name: pokemonData.name,
-                    types: pokemonData.types,
-                    abilities: pokemonData.abilities,
-                    moves: pokemonData.moves
-                });
+                // Renderizar la página de inicio con los datos del Pokémon
+                res.render("home", { joke: "", pokemonData: pokemonData });
             } else {
-                // Handle Pokémon not found
-                res.status(apiRes.statusCode).json({ error: 'Pokémon not found' });
+                // Manejar Pokémon no encontrado
+                res.render("home", { joke: "", pokemonData: null, error: 'Pokémon no encontrado' });
             }
         });
     }).on('error', (err) => {
         console.error('Error: ' + err.message);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).render("home", { joke: "", pokemonData: null, error: 'Error interno del servidor' });
     });
 });
 
 app.listen(5000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port 5000');
 });

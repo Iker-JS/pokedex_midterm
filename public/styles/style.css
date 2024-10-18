@@ -21,10 +21,29 @@ body{
 
 #page_main{
 
-    background: white;
-    margin-top: 20px;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    background-color: white;
+    border: 5px solid black;
+    margin-top: 10px;
+    padding: 10px;
 }
 
+.page_pokemon_container{
+
+    /* background-color: #3B4CCA; */
+    background-color: lightgray;    
+    border: 2px solid black;
+    margin-top: 10px;
+    padding: 10px;
+    height: auto;
+
+}
+#pokemon_name_id{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #page_footer{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -32,7 +51,7 @@ body{
     background-color: #B3A125;
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 20px;
     font-size: 1.5rem;
 
