@@ -1,5 +1,9 @@
 <div class="page_pokemon_container">
 
+    <div id="pokemon_image">
+        <img src="<%= pokemonData.sprites.front_default %>" alt="<%= pokemonData.name %>" onerror="this.onerror=null; this.src='../public/imag/pokemonplaceholder.jpg';" />
+    </div>
+
     <div id="pokemon_name">
         <h1><%= pokemonData.name %></h1>
     </div>
@@ -8,16 +12,12 @@
         <h2>Type(s): <%= pokemonData.types.map(type => type.type.name).join(', ') %></h2>
     </div>
 
-
-    
     <div id="pokemon_abilities">
         <h2>Abilities: <%= pokemonData.abilities.map(ability => ability.ability.name).join(', ') %></h2>
     </div>
 
     <div id="pokemon_moves">
         <h2>Moves: <%= pokemonData.moves.map(move => move.move.name).join(', ') %></h2>
-
     </div>
 
 </div>
-
