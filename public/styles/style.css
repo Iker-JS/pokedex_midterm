@@ -9,15 +9,12 @@ body{
 #main{
 
     background: white;
+    margin-top: 20px;
 }
 p{
     font-size: 32px;
 }
 
-div{
-
-    border: 5px solid black;
-}
 
 
 .title_container {
@@ -35,4 +32,13 @@ div{
     font-size: 60px;
     margin: 0;
     color: white;
+}
+
+
+#page_footer{
+    background-color: aliceblue;
+    border: 5px solid black;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
 }

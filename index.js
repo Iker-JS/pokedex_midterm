@@ -20,11 +20,9 @@ app.route('/').get((req, res) =>{
     var name = 'iker'
     res.render('home', {name});
 
+
 }).post((req, res) =>{
-
-    
-    res.send('Your BMI is: ');
-
+    // res.send('Your BMI is: ');
 })
 
 
