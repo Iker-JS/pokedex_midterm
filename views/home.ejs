@@ -1,55 +1,16 @@
 <%- include("partials/header"); -%>
 
+
+
 <% if(locals.name) { %>
-    <p>Hi <%= name %></p>
+
+    <p>hi <%= name %></p>
+
+
 <% } %>
 
-<h1>Pokémon Search</h1>
-<input id="pokemon-name" type="text" placeholder="Enter a Pokémon name">
-<button id="search-button">Search</button>
-<div id="pokemon-info" class="pokemon-info"></div>
+    
+</main>
 
-<script>
-    // Get the input field and button
-    const pokemonNameInput = document.getElementById('pokemon-name');
-    const searchButton = document.getElementById('search-button');
-    const pokemonInfoDiv = document.getElementById('pokemon-info');
-
-    // Add an event listener to the button
-    searchButton.addEventListener('click', () => {
-        // Get the Pokémon name from the input field
-        const pokemonName = pokemonNameInput.value.trim();
-
-        // Make a request to your backend server
-        fetch('/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: pokemonName })
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(`Failed to retrieve Pokémon: ${response.status}`);
-            }
-        })
-        .then(data => {
-            // Display the Pokémon information including ID
-            const pokemonInfoHtml = `
-                <h2>${data.name} (ID: ${data.id})</h2>
-                <p>Type: ${data.types.map(type => type.type.name).join(', ')}</p>
-                <p>Abilities: ${data.abilities.map(ability => ability.ability.name).join(', ')}</p>
-                <p>Moves: ${data.moves.map(move => move.move.name).join(', ')}</p>
-            `;
-            pokemonInfoDiv.innerHTML = pokemonInfoHtml;
-        })
-        .catch(error => {
-            // Display an error message
-            pokemonInfoDiv.innerHTML = `<p>Error: ${error.message}</p>`;
-        });
-    });
-</script>
-
+</div>
 <%- include("partials/footer"); -%>
