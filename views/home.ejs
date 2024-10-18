@@ -4,16 +4,24 @@
     <main id="page_main">
         
         
-        
-        <h1>Pokemon Search</h1>
-        <form id="pokemon-search-form" method="POST" action="/search">
-            <input id="pokemon-name" name="name" type="text" placeholder="Pokemon name" required>
-            <button type="submit">Search</button>
-        </form>
-        
+        <div id="pokemon_search_zone">
+            <div>
+                <h1 id="">Find a Pokemon</h1>
+            </div>
+
+            <div id="pokemon_search_container">
+                <form id="pokemon_search_form" method="POST" action="/search">
+                    <input id="pokemon_search_name" name="name" type="text" placeholder="Search" required>
+                    <button type="submit" id="pokemon_search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+
+        </div>
+            
         
         
         <% if (locals.pokemonData) { %>
+
             <%- include("partials/pokemon_form"); -%>            
 
         <% } %>

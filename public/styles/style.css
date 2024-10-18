@@ -19,8 +19,44 @@ body{
     color: white;
 }
 
-#page_main{
+#pokemon_search_zone{
 
+    border: 5px solid black;
+}
+
+#pokemon_search_container{
+    display: flex;
+
+    justify-content: right;
+    height: auto;
+    padding: 16px;
+}
+
+#pokemon_search_name{
+    background-color: black;
+    font-size: 20px;
+    font-weight: bold;
+    height: auto;
+    width: 150px;
+
+}
+
+#pokemon_search_name::placeholder{
+    color: black;
+    background-color: #B3A125;
+}
+
+#pokemon_search_button{
+
+    background-color: #CC0000;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+}
+
+#page_main{
     /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
     background-color: white;
     border: 5px solid black;
@@ -38,7 +74,7 @@ body{
     height: auto;
 
 }
-#pokemon_name_id{
+#pokemon_name{
 
     display: flex;
     justify-content: center;
@@ -55,5 +91,8 @@ body{
     padding: 20px;
     font-size: 1.5rem;
 
+
 }
+
+
 
