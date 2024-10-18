@@ -11,8 +11,9 @@
 
             <div id="pokemon_search_container">
                 <form id="pokemon_search_form" method="POST" action="/search">
-                    <input id="pokemon_search_name" name="name" type="text" placeholder="Search" required>
+                    <input id="pokemon_search_name" name="name" type="text" placeholder="Search" required required autocomplete="off">
                     <button type="submit" id="pokemon_search_button"><i class="fa-solid fa-magnifying-glass"></i></button>
+
                 </form>
             </div>
 
@@ -20,9 +21,13 @@
             
         
         
-        <% if (locals.pokemonData) { %>
+        <% if (locals.found && locals.pokemonData) { %>
 
             <%- include("partials/pokemon_form"); -%>            
+
+        <% } else if (!locals.found && !locals.pokemonData) { %>
+            
+            <p>Unknown option for "<%= locals.pokemonName %>", try it again.</p>
 
         <% } %>
 

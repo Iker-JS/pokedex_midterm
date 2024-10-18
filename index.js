@@ -22,20 +22,24 @@ app.post('/search', (req, res) => {
     // Llamar a la PokeAPI para buscar el Pokémon
     https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (apiRes) => {
         let data = '';
-        
+        let found = false;
+
         // Recibir los datos
         apiRes.on('data', (chunk) => {
             data += chunk;
         });
         // Cuando se reciben todos los datos
         apiRes.on('end', () => {
-            if (apiRes.statusCode === 200) {
+            
+            if (apiRes.statusCode == 200) {
+                found = true;
                 const pokemonData = JSON.parse(data);
                 // Renderizar la página de inicio con los datos del Pokémon
-                res.render("home", { joke: "", pokemonData: pokemonData });
+                res.render("home", { joke: "", pokemonData: pokemonData, found});
+
             } else {
                 // Manejar Pokémon no encontrado
-                res.render("home", { joke: "", pokemonData: null, error: 'Pokémon no encontrado' });
+                res.render("home", { joke: "", pokemonName, found});
             }
         });
     }).on('error', (err) => {
