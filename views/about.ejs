@@ -10,13 +10,13 @@
             </div>
 
             <div id="button_backward_forward_container">
-                <form action="/navigate" method="POST" style="display: inline;">
+                <form action="/navigate" method="POST">
                     <input type="hidden" name="direction" value="prev">
                     <input type="hidden" name="currentId" value="<%= locals.pokemonData ? pokemonData.id : 1 %>">
                     <button type="submit" class="button_backward_forward"><i class="fa-solid fa-left-long"></i></button>
                 </form>
                 
-                <form action="/navigate" method="POST" style="display: inline;">
+                <form action="/navigate" method="POST" >
                     <input type="hidden" name="direction" value="next">
                     <input type="hidden" name="currentId" value="<%= locals.pokemonData ? pokemonData.id : 1 %>">
                     <button type="submit" class="button_backward_forward"><i class="fa-solid fa-right-long"></i></button>
