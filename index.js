@@ -10,8 +10,8 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 // Función para obtener datos de Pokémon
-const fetchPokemonData = (pokemonName, callback) => {
-    https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (apiRes) => {
+const fetchPokemonData = (pokemonIdentifier, callback) => {
+    https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonIdentifier}`, (apiRes) => {
         let data = '';
 
         apiRes.on('data', (chunk) => {
@@ -32,41 +32,53 @@ const fetchPokemonData = (pokemonName, callback) => {
     });
 };
 
-// Ruta principal
+// Función para obtener el siguiente o anterior Pokémon
+const getAdjacentPokemon = (currentId, direction) => {
+    let newId = currentId + direction;
+    if (newId < 1) newId = 1025;
+    if (newId > 1025) newId = 1;
+    return newId;
+};
+
 app.route("/")
     .get((req, res) => {
-        // Obtener datos de Bulbasaur al cargar la página
-        fetchPokemonData('bulbasaur', (err, pokemonData) => {
+        res.render("home", { title: 'Welcome to The JS Pokedex' });
+    });
+
+app.route("/about")
+    .get((req, res) => {
+        const pokemonId = req.query.id || 1;
+        fetchPokemonData(pokemonId, (err, pokemonData) => {
             if (err) {
-                res.render("home", { pokemonData: null, error: err.message });
+                res.render("about", { pokemonData: null, error: err.message, title: 'About The JS Pokedex' });
             } else {
-                res.render("home", { pokemonData: pokemonData, found: true });
+                res.render("about", { pokemonData: pokemonData, found: true, title: 'About The JS Pokedex' });
             }
         });
     });
 
-// Ruta para buscar Pokémon
 app.post('/search', (req, res) => {
     const pokemonName = req.body.name; 
-    https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, (apiRes) => {
-        let data = '';
-        let found = false;
+    fetchPokemonData(pokemonName, (err, pokemonData) => {
+        if (err) {
+            res.render("about", { pokemonData: null, error: err.message, title: 'About The JS Pokedex' });
+        } else {
+            res.render("about", { pokemonData: pokemonData, found: true, title: 'About The JS Pokedex' });
+        }
+    });
+});
 
-        apiRes.on('data', (chunk) => {
-            data += chunk;
-        });
-        apiRes.on('end', () => {
-            if (apiRes.statusCode == 200) {
-                found = true;
-                const pokemonData = JSON.parse(data);
-                res.render("home", { pokemonData: pokemonData, found });
-            } else {
-                res.render("home", { pokemonName, found });
-            }
-        });
-    }).on('error', (err) => {
-        console.error('Error: ' + err.message);
-        res.status(500).render("home", { pokemonData: null, error: 'Error interno del servidor' });
+app.post('/navigate', (req, res) => {
+    const direction = req.body.direction === 'next' ? 1 : -1;
+    const currentId = parseInt(req.body.currentId) || 1;
+    const newId = getAdjacentPokemon(currentId, direction);
+    
+    fetchPokemonData(newId, (err, pokemonData) => {
+        if (err) {
+            res.render("about", { pokemonData: null, error: err.message, title: 'About The JS Pokedex' });
+        } else {
+            res.render("about", { pokemonData: pokemonData, found: true, title: 'About The JS Pokedex' });
+        }
     });
 });
 
