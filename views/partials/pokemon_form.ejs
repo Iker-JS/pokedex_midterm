@@ -43,21 +43,20 @@
     <div id="pokemon_abilities">
     
         <h2>Abilitie(s):</h2>
-        <ul>
+        <ul id="bulletpoints">
           <% pokemonData.abilities.forEach(function(ability) { %>
             <li><%= ability.ability.name %></li>
           <% }); %>
         </ul>
-        </div>
+    </div>
 
     <div id="pokemon_moves">
         <h2>Move(s):</h2>
-        
-        <ul>
+        <ul id="bulletpoints">
             <% pokemonData.moves.forEach(function(move) { %>
-              <li><%= move.move.name %></li>
+                <li><%= move.move.name %></li>
             <% }); %>
-          </ul>
+        </ul>
     </div>
 
 </div>

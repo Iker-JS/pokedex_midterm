@@ -189,6 +189,35 @@ body{
     align-items: center;
 }
 
+.page_pokemon_container {
+    background-color: #B7B6BB;    
+    border: 2px solid black;
+    margin-top: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#pokemon_moves {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#bulletpoints {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 0;
+    list-style-position: inside;
+    margin: 0;
+}
+
+#bulletpoints li {
+    margin: 0;
+    padding: 5px 0;
+}
+
 #page_footer{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border: 5px solid black;
