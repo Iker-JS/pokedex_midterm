@@ -124,7 +124,7 @@ body{
 #display_card{
 
     display: flex;
-    justify-content: right;
+    justify-content: center;
 }
 
 
