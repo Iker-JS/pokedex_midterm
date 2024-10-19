@@ -3,6 +3,14 @@ body{
     margin: 30px;
 }
 
+#page_main{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: white;
+    border: 5px solid black;
+    margin-top: 10px;
+    padding: 10px;
+}
+
 .page_header_container {
     display: flex;
     justify-content: center;
@@ -91,12 +99,51 @@ body{
 }
 
 
-#page_main{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: white;
-    border: 5px solid black;
-    margin-top: 10px;
+.pokemon_card{
+    padding: 1%;
+    background-color: orange;
+    border: 1px solid black;
+    width: 300px;
+    height: auto;
+
+}
+
+.pokemon_card_info{
+    padding: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    background: rgb(221,91,31);
+    background: linear-gradient(0deg, rgba(221,91,31,1) 0%, rgba(224,183,30,1) 37%, rgba(221,91,31,1) 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+
+}
+
+.pokemon_card_name_id{
     padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+.pokemon_card_name_id > img{
+    width: 50px;
+    height:50px;
+}
+
+
+.pokemon_card_image{
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon_card_image > img{
+    width: 200px;
+    height: 200px;    
+}
+.pokemon_card_type{
+    display: flex;
+    justify-content: center;
+
 }
 
 .page_pokemon_container{
@@ -128,6 +175,6 @@ body{
 }
 
 
-#page_footer>div>a:hover{
+#page_footer > div > a:hover{
     color: #6E39a5;
 }

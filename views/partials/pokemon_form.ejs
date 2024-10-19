@@ -1,5 +1,28 @@
 <div class="page_pokemon_container">
 
+    <div class="pokemon_card">
+
+        <div class="pokemon_card_info">
+            
+            <div class="pokemon_card_name_id">
+                <img src="./img/pokeball_for_card.png" alt="">
+                <p><%= pokemonData.name %></p>
+                <p>#<%= pokemonData.id %></p>
+            </div>
+            
+            <div class="pokemon_card_image">
+                <img src="<%= pokemonData.sprites.front_default %>" alt="<%= pokemonData.name %>" onerror="this.onerror=null; this.src='../public/imag/pokemonplaceholder.jpg';" />
+            </div>
+
+            <div class="pokemon_card_type">
+                <p><%= pokemonData.types.map(type => type.type.name).join(', ') %></p>
+            </div>
+
+
+        </div>
+    </div>
+
+
     <div id="pokemon_image">
         <img src="<%= pokemonData.sprites.front_default %>" alt="<%= pokemonData.name %>" onerror="this.onerror=null; this.src='../public/imag/pokemonplaceholder.jpg';" />
     </div>
