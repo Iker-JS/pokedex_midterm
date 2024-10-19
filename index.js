@@ -9,7 +9,6 @@ app.use(express.static('public'));
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-// Función para obtener datos de Pokémon
 const fetchPokemonData = (pokemonIdentifier, callback) => {
     https.get(`https://pokeapi.co/api/v2/pokemon/${pokemonIdentifier}`, (apiRes) => {
         let data = '';
@@ -32,7 +31,22 @@ const fetchPokemonData = (pokemonIdentifier, callback) => {
     });
 };
 
-// Función para obtener el siguiente o anterior Pokémon
+const fetchMultiplePokemon = async (start, count) => {
+    let pokemonList = [];
+    for (let i = start; i < start + count; i++) {
+        if (i > 1025) break; // Límite actual de Pokémon
+        await new Promise((resolve) => {
+            fetchPokemonData(i, (err, pokemonData) => {
+                if (!err) {
+                    pokemonList.push(pokemonData);
+                }
+                resolve();
+            });
+        });
+    }
+    return pokemonList;
+};
+
 const getAdjacentPokemon = (currentId, direction) => {
     let newId = currentId + direction;
     if (newId < 1) newId = 1025;
@@ -41,11 +55,28 @@ const getAdjacentPokemon = (currentId, direction) => {
 };
 
 app.route("/")
-    .get((req, res) => {
-        res.render("home", { title: 'Welcome to The JS Pokedex' });
+    .get(async (req, res) => {
+        const page = parseInt(req.query.page) || 1;
+        const pokemonPerPage = 24; // 8 filas de 3 Pokémon cada una
+        const start = (page - 1) * pokemonPerPage + 1;
+        
+        try {
+            const pokemonList = await fetchMultiplePokemon(start, pokemonPerPage);
+            res.render("home", { 
+                title: 'Welcome to The JS Pokedex',
+                pokemonList: pokemonList,
+                currentPage: page,
+                totalPages: Math.ceil(1025 / pokemonPerPage)
+            });
+        } catch (error) {
+            res.render("home", { 
+                title: 'Welcome to The JS Pokedex',
+                error: 'Error al cargar los Pokémon'
+            });
+        }
     });
 
-app.route("/about")
+    app.route("/about")
     .get((req, res) => {
         const pokemonId = req.query.id || 1;
         fetchPokemonData(pokemonId, (err, pokemonData) => {
