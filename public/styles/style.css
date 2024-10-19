@@ -178,3 +178,20 @@ body{
 #page_footer > div > a:hover{
     color: #6E39a5;
 }
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nav-link {
+    margin: 0 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline; }
