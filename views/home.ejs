@@ -1,10 +1,16 @@
 <%- include("partials/header"); -%>
 <div>
+    <div id="button_backward_forward_container">
+        <button class="button_backward_forward"><i class="fa-solid fa-left-long"></i></button>        
+        <button class="button_backward_forward"><i class="fa-solid fa-right-long"></i> </button>
+    </div>
+
     <main id="page_main">
         <div id="pokemon_search_zone">
             <div>
-                <h1 id="">Find a Pokemon</h1>
+                <h1 id="pokemon_search_title">Find a Pokemon</h1>
             </div>
+
 
             <div id="pokemon_search_container">
                 <form id="pokemon_search_form" method="POST" action="/search">
@@ -15,7 +21,8 @@
         </div>
 
         <% if (locals.found && locals.pokemonData) { %>
-            <%- include("partials/pokemon_form"); -%>            
+            <%- include("partials/pokemon_form"); -%>
+
         <% } else if (!locals.found && locals.pokemonName) { %>
             <p>Unknown option for "<%= locals.pokemonName %>", try it again.</p>
         <% } %>
@@ -23,6 +30,8 @@
         <% if (locals.error) { %>
             <p>Error: <%= locals.error %></p>
         <% } %>
+
+
     </main>
 </div>
 <%- include("partials/footer"); -%>
