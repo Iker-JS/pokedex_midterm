@@ -23,7 +23,7 @@ const fetchPokemonData = (pokemonIdentifier, callback) => {
                 const pokemonData = JSON.parse(data);
                 callback(null, pokemonData);
             } else {
-                callback(new Error('Pokémon no encontrado'), null);
+                callback(new Error('Pokemon not found'), null);
             }
         });
     }).on('error', (err) => {

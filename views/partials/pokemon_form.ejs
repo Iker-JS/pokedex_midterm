@@ -1,5 +1,8 @@
 <div class="page_pokemon_container">
 
+    <div id="pokemon_name">
+        <h1><%= pokemonData.name %></h1>
+    </div>
 
     <div id="display_card">
 
@@ -36,13 +39,10 @@
         </div>
     </div>
 
-    <div id="pokemon_name">
-        <h1><%= pokemonData.name %></h1>
-    </div>
 
     <div id="pokemon_abilities">
     
-        <h2>Abilitie(s):</h2>
+        <h2 class="abilities_moves">Abilitie(s):</h2>
         <ul id="bulletpoints">
           <% pokemonData.abilities.forEach(function(ability) { %>
             <li><%= ability.ability.name %></li>
@@ -51,7 +51,7 @@
     </div>
 
     <div id="pokemon_moves">
-        <h2>Move(s):</h2>
+        <h2 class="abilities_moves">Move(s):</h2>
         <ul id="bulletpoints">
             <% pokemonData.moves.forEach(function(move) { %>
                 <li><%= move.move.name %></li>
