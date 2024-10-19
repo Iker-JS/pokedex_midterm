@@ -4,10 +4,17 @@
 
         <div class="pokemon_card_info">
             
-            <div class="pokemon_card_name_id">
-                <img src="./img/pokeball_for_card.png" alt="">
+            <div class="pokemon_card_name">
+                
+                <div class="pokemon_card_id_container">
+
+                    <img src="./img/pokeball_for_card.png" alt="">
+                    <p class="pokemon_card_id">#<%= pokemonData.id %></p>
+                    
+                </div>
+
                 <p><%= pokemonData.name %></p>
-                <p>#<%= pokemonData.id %></p>
+                <p><%= pokemonData.base_experience %> exp</p>
             </div>
             
             <div class="pokemon_card_image">
@@ -15,7 +22,9 @@
             </div>
 
             <div class="pokemon_card_type">
+                <p><%= pokemonData.weight/10 %> kg</p> 
                 <p><%= pokemonData.types.map(type => type.type.name).join(', ') %></p>
+                <p><%= pokemonData.height/10 %> m</p>
             </div>
 
 
@@ -24,19 +33,27 @@
     </div>
 
     <div id="pokemon_name">
-        <h1><%= pokemonData.name %></h1>
-    </div>
-
-    <div id="pokemon_type">
-        <h2>Type(s): <%= pokemonData.types.map(type => type.type.name).join(', ') %></h2>
+        <h1><%= pokemonData.name %>, base: <%= pokemonData.base_experience %></h1>
     </div>
 
     <div id="pokemon_abilities">
-        <h2>Abilities: <%= pokemonData.abilities.map(ability => ability.ability.name).join(', ') %></h2>
-    </div>
+    
+        <h2>Abilitie(s):</h2>
+        <ul>
+          <% pokemonData.abilities.forEach(function(ability) { %>
+            <li><%= ability.ability.name %></li>
+          <% }); %>
+        </ul>
+        </div>
 
     <div id="pokemon_moves">
-        <h2>Moves: <%= pokemonData.moves.map(move => move.move.name).join(', ') %></h2>
+        <h2>Move(s):</h2>
+        
+        <ul>
+            <% pokemonData.moves.forEach(function(move) { %>
+              <li><%= move.move.name %></li>
+            <% }); %>
+          </ul>
     </div>
 
 </div>

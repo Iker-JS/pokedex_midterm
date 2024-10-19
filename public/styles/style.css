@@ -104,28 +104,43 @@ body{
 
 }
 
+.pokemon_card_info > p{
+    background: #000;
+}
 .pokemon_card_info{
     padding: auto;
-    font-family: 'Courier New', Courier, monospace  ;
+    border: 1px solid black;
+
     font-weight: bold;
     background: rgb(221,91,31);
     background: linear-gradient(0deg, rgba(221,91,31,1) 0%, rgba(224,183,30,1) 37%, rgba(221,91,31,1) 100%);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
 
 }
 
-.pokemon_card_name_id{
-    padding: 10px;
 
-    display: flex;
-    justify-content: space-between;
+.pokemon_card_id_container{
+
+    position: relative;
+    display: inline-block;
+    text-align: center;
 }
-.pokemon_card_name_id > img{
+ 
+.pokemon_card_id_container > img {
     width: 50px;
     height:50px;
 }
+.pokemon_card_id{
 
+    color: cyan;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .pokemon_card_image{
     display: flex;
@@ -136,16 +151,23 @@ body{
     width: 200px;
     height: 200px;
 }
-.pokemon_card_type{
+.pokemon_card_name{
+    padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.pokemon_card_type{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 
 }
 
 .page_pokemon_container{
 
-    /* background-color: #3B4CCA; */
-    background-color: #B7B6BB;    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #B7B6BB;
     border: 2px solid black;
     margin-top: 10px;
     padding: 10px;
