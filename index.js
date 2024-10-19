@@ -69,7 +69,7 @@ app.post('/search', (req, res) => {
 });
 
 app.post('/navigate', (req, res) => {
-    const direction = req.body.direction === 'next' ? 1 : -1;
+    const direction = req.body.direction === 'next' ? 0 : -1;
     const currentId = parseInt(req.body.currentId) || 1;
     const newId = getAdjacentPokemon(currentId, direction);
     

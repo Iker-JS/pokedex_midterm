@@ -106,7 +106,7 @@ body{
 
 .pokemon_card_info{
     padding: auto;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace  ;
     font-weight: bold;
     background: rgb(221,91,31);
     background: linear-gradient(0deg, rgba(221,91,31,1) 0%, rgba(224,183,30,1) 37%, rgba(221,91,31,1) 100%);
